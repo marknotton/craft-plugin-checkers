@@ -12,6 +12,7 @@ Adds a range of useful tests and checkers for front-end Twig use.
 - [Entry](#entry)
 - [Category](#category)
 - [Tag](#tag)
+- [Cleanup](#cleanup)
 
 ## Real
 
@@ -61,4 +62,12 @@ Adds a Twig "Test" to check if a given element is a Tag
 
 ```
 {% if var is tag %} ... {% endif %}
+```
+
+## Cleanup
+
+Adds a Twig filter to remove empty HTML tags
+
+```
+{{ entry.body|cleanup }}
 ```
