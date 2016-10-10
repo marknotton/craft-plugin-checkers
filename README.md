@@ -1,109 +1,64 @@
-<img src="http://i.imgur.com/klRglRT.png" alt="Browser" align="left" height="60" />
+<img src="http://i.imgur.com/38EZoph.png" alt="Checkers" align="left" height="60" />
 
-# Browser *for Craft CMS*
+# Checkers *for Craft CMS*
 
-Gathers server-side information on the users agent data.
+Adds a range of useful tests and checkers for front-end Twig use.
 
 ##Table of Contents
 
-- [Dependencies](#dependencies)
-- [Is](#is)
-- [Data](#data)
-- [Full](#full)
-- [Local](#locl)
+- [Real](#real)
+- [Array](#array)
+- [Object](#object)
+- [Entry](#entry)
+- [Category](#category)
+- [Tag](#tag)
 
-##Dependencies
+## Real
 
-- [Agent by Jens Segers](https://github.com/jenssegers/agent)
-- [Mobile Detect](http://mobiledetect.net/)
+Adds a Twig "Test" to check if a given element is set and not empty
 
-## Is
+> TODO: Instead of "isset", find a way of using Twigs 'defined' test instead.
 
-Perform a number of checks to determine wether the users browser type is a match. Returns ```boolean```.
-
-####Example 1:
-Returns true if current browser is either 'IE, Edge, or Firefox'
 ```
-{{ browser.is('ie edge firefox') }}
+{% if var is real %} ... {% endif %}
 ```
 
-####Example 2:
-Exactly the same as example one, but demonstrates you can pass as many arguments as you like. Each argument is handled as an "or" not an "and".
+## Array
+
+Adds a Twig "Test" to check if a given element is an Array
+
 ```
-{{ browser.is('ie', 'edge', 'firefox') }}
+{% if var is array %} ... {% endif %}
 ```
 
-####Example 3:
-Returns true if current browser is greater than IE 9
+## Object
+
+Adds a Twig "Test" to check if a given element is an Object
+
 ```
-{{ browser.is('ie 9 >') }}
+{% if var is object %} ... {% endif %}
 ```
 
-####Example 4:
-Returns true if current browser is greater or equal to IE 9
+## Entry
+
+Adds a Twig "Test" to check if a given element is an Entry
+
 ```
-{{ browser.is('ie => 9') }}
+{% if var is entry %} ... {% endif %}
 ```
 
-####Example 5:
-Returns true if current browser is either, IE version 9 or 10, Chrome version 50 or above, or Firefox any version
+## Category
+
+Adds a Twig "Test" to check if a given element is a Category
+
 ```
-{{ browser.is('ie 9 10', 'chrome > 49', 'firefox') }}
+{% if var is category %} ... {% endif %}
 ```
 
-####Example 6:
-Just an example of how if the same function would be formatted for php
-```php
-craft()->browser->is('chrome 48');
-```
+## Tag
 
-----
-## Data
+Adds a Twig "Test" to check if a given element is a Tag
 
-Echo out's a data attribute with name and version number. Ideal for querying via Javascript or CSS
-
-#### Example
 ```
-{{ browser.data|default }}
-```
-
-#### Example Output
-```html
-data-browser="chrome 52"
-```
-
-#### Example Output: jQuery Usage
-```js
-if ( $('html[data-browser^=chrome]').length ) {...}
-```
-
-#### Example Output: CSS Usage
-```css
-html[data-browser^=chrome] {...}
-```
-
-----
-## Full
-
-Simply returns the name and version of the users browser.
-
-Returns browser name and version number in an array
-```
-{{ browser.full }}
-```
-
-Returns browser name
-```
-{{ browser.full.name }}
-```
-
-Returns version number
-```
-{{ browser.full.version }}
-```
-
-## Local
-A very quick check to see if you are on a local or live server. Returns ```Boolean```
-```
-{{ local }}
+{% if var is tag %} ... {% endif %}
 ```
