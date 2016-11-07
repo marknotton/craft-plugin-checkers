@@ -54,6 +54,11 @@ class CheckersPlugin extends BasePlugin {
         return isset($value) && !empty($value);
       }));
 
+      // Is blank - is defined and is not empty
+      $twig->addTest(new \Twig_SimpleTest('blank', function ($value) {
+        return empty($value) || strlen(trim($value)) == 0;
+      }));
+
       // Is Array
       $twig->addTest(new \Twig_SimpleTest('array', function ($value) {
         return is_array($value);
@@ -62,6 +67,21 @@ class CheckersPlugin extends BasePlugin {
       // Is Object
       $twig->addTest(new \Twig_SimpleTest('object', function ($value) {
         return is_object($value);
+      }));
+
+      // Is Single
+      $twig->addTest(new \Twig_SimpleTest('single', function ($element) {
+        return $element->getSection()->type == 'single' || $element[0]->getSection()->type == 'single';
+      }));
+
+      // Is Type
+      $twig->addTest(new \Twig_SimpleTest('string', function ($value) {
+        return gettype($value) == 'string';
+      }));
+
+      // Is Channel
+      $twig->addTest(new \Twig_SimpleTest('channel', function ($element) {
+        return $element->getSection()->type == 'channel' || $element[0]->getSection()->type == 'channel';
       }));
 
       // Is Entry
